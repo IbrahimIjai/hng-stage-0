@@ -8,6 +8,7 @@ async function bootstrap() {
   app.enableCors({ origin: '*' });
   app.useGlobalFilters(new HttpExceptionFilter());
 
-  await app.listen(process.env.PORT ?? 3000);
+  // Bind to 0.0.0.0 so both WSL and Windows can access it easily!
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
 bootstrap();
